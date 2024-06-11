@@ -16,6 +16,7 @@ import Empty from 'antd/lib/empty';
 import Button from 'antd/lib/button';
 import { CopyOutlined, PlusOutlined } from '@ant-design/icons';
 import { Task, Job } from 'cvat-core-wrapper';
+import { useTranslation } from 'react-i18next';
 import JobItem from 'components/job-item/job-item';
 import CVATTooltip from 'components/common/cvat-tooltip';
 import {
@@ -62,7 +63,7 @@ function JobListComponent(props: Props): JSX.Element {
         onUpdateJob,
     } = props;
     const [visibility, setVisibility] = useState(defaultVisibility);
-
+    const { t } = useTranslation();
     const history = useHistory();
     const { id: taskId } = taskInstance;
     const { jobs } = taskInstance;
@@ -100,7 +101,9 @@ function JobListComponent(props: Props): JSX.Element {
             <div className='cvat-jobs-list-filters-wrapper'>
                 <Row>
                     <Col>
-                        <Text className='cvat-text-color cvat-jobs-header'> Jobs </Text>
+                        <Text className='cvat-text-color cvat-jobs-header'>
+                            {t('translations:task.jobs')}
+                        </Text>
                     </Col>
                     <CVATTooltip trigger='click' title='Copied to clipboard!'>
                         <Button

@@ -3,6 +3,7 @@
 #
 # SPDX-License-Identifier: MIT
 
+import json
 import os
 import os.path as osp
 from PIL import Image
@@ -22,7 +23,7 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError, transaction
 from django.db.models import Count
 from django.db.models.query import Prefetch
-from django.http import HttpResponse, HttpRequest, HttpResponseNotFound, HttpResponseBadRequest
+from django.http import HttpResponse, HttpRequest, HttpResponseNotFound, HttpResponseBadRequest, JsonResponse
 from django.utils import timezone
 
 from drf_spectacular.types import OpenApiTypes
@@ -36,9 +37,10 @@ from rest_framework import mixins, serializers, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.exceptions import APIException, NotFound, ValidationError, PermissionDenied
 from rest_framework.parsers import MultiPartParser
-from rest_framework.permissions import SAFE_METHODS
+from rest_framework.permissions import SAFE_METHODS, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
+from rest_framework.views import APIView
 
 import cvat.apps.dataset_manager as dm
 import cvat.apps.dataset_manager.views  # pylint: disable=unused-import
@@ -3191,3 +3193,15 @@ def _import_project_dataset(request, rq_id_template, rq_func, db_obj, format_nam
     serializer.is_valid(raise_exception=True)
 
     return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+
+def serve_translation_file(request, lng, ns):
+    # logger.debug(f"Request received for language: {lng}, namespace: {ns}")
+    file_path = os.path.join(settings.BASE_DIR, 'locales', lng, f'{ns}.json')
+    print('filepath', file_path)
+    if os.path.exists(file_path):
+        with open(file_path, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+        return JsonResponse(data, safe=False)
+    else:
+        # logger.error(f"Translation file not found: {file_path}")
+        return HttpResponseNotFound('Translation file not found')

@@ -72,6 +72,7 @@ import '../styles.scss';
 import appConfig from 'config';
 import EventRecorder from 'utils/event-recorder';
 import { authQuery } from 'utils/auth-query';
+import { WithTranslation, withTranslation } from 'react-i18next';
 import EmailConfirmationPage from './email-confirmation-pages/email-confirmed';
 import EmailVerificationSentPage from './email-confirmation-pages/email-verification-sent';
 import IncorrectEmailConfirmationPage from './email-confirmation-pages/incorrect-email-confirmation';
@@ -122,8 +123,8 @@ interface CVATAppState {
     backendIsHealthy: boolean;
 }
 
-class CVATApplication extends React.PureComponent<CVATAppProps & RouteComponentProps, CVATAppState> {
-    constructor(props: CVATAppProps & RouteComponentProps) {
+class CVATApplication extends React.PureComponent<CVATAppProps & WithTranslation & RouteComponentProps, CVATAppState> {
+    constructor(props: CVATAppProps & WithTranslation & RouteComponentProps) {
         super(props);
 
         this.state = {
@@ -134,7 +135,10 @@ class CVATApplication extends React.PureComponent<CVATAppProps & RouteComponentP
 
     public componentDidMount(): void {
         const core = getCore();
-        const { history, location } = this.props;
+        const { history, location, i18n } = this.props;
+
+        i18n.changeLanguage(navigator.language);
+
         const {
             HEALTH_CHECK_RETRIES, HEALTH_CHECK_PERIOD, HEALTH_CHECK_REQUEST_TIMEOUT,
             SERVER_UNAVAILABLE_COMPONENT, RESET_NOTIFICATIONS_PATHS,
@@ -610,4 +614,4 @@ class CVATApplication extends React.PureComponent<CVATAppProps & RouteComponentP
     }
 }
 
-export default withRouter(CVATApplication);
+export default withTranslation()(withRouter(CVATApplication));

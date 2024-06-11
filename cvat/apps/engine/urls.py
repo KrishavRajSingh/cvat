@@ -46,5 +46,8 @@ urlpatterns = [
     # entry point for API
     path('api/', include('cvat.apps.iam.urls')),
     path('api/', include('cvat.apps.organizations.urls')),
+    path('api/locales/<str:lng>/<str:ns>.json',
+        views.serve_translation_file,
+        name='serve_translation_file'),
     path('api/', include(router.urls)),
 ]

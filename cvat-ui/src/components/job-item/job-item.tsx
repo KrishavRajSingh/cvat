@@ -27,6 +27,7 @@ import {
 import { useIsMounted } from 'utils/hooks';
 import UserSelector from 'components/task-page/user-selector';
 import CVATTooltip from 'components/common/cvat-tooltip';
+import { useTranslation } from 'react-i18next';
 import JobActionsMenu from './job-actions-menu';
 
 interface Props {
@@ -107,6 +108,7 @@ function JobItem(props: Props): JSX.Element {
     const deletes = useSelector((state: CombinedState) => state.jobs.activities.deletes);
     const deleted = id in deletes ? deletes[id] === true : false;
     const style = {};
+    const { t } = useTranslation();
     if (deleted) {
         (style as any).pointerEvents = 'none';
         (style as any).opacity = 0.5;
@@ -132,13 +134,15 @@ function JobItem(props: Props): JSX.Element {
                         </Row>
                         <Row className='cvat-job-item-dates-info'>
                             <Col>
-                                <Text>Created on </Text>
+                                <Text>
+                                    {`${t('translations:job.created_on')} `}
+                                </Text>
                                 <Text type='secondary'>{`${created.format('MMMM Do YYYY HH:mm')}`}</Text>
                             </Col>
                         </Row>
                         <Row>
                             <Col>
-                                <Text>Last updated </Text>
+                                <Text>{`${t('translations:job.last_updated')} `}</Text>
                                 <Text type='secondary'>{`${updated.format('MMMM Do YYYY HH:mm')}`}</Text>
                             </Col>
                         </Row>
@@ -149,7 +153,9 @@ function JobItem(props: Props): JSX.Element {
                                 <Row>
                                     <Col className='cvat-job-item-select'>
                                         <Row>
-                                            <Text>Assignee:</Text>
+                                            <Text>
+                                                {`${t('translations:job.assignee')}: `}
+                                            </Text>
                                         </Row>
                                         <UserSelector
                                             className='cvat-job-assignee-selector'
@@ -164,7 +170,9 @@ function JobItem(props: Props): JSX.Element {
                                     <Col className='cvat-job-item-select'>
                                         <Row justify='space-between' align='middle'>
                                             <Col>
-                                                <Text>Stage:</Text>
+                                                <Text>
+                                                    {`${t('translations:job.stage')}: `}
+                                                </Text>
                                             </Col>
                                             <Col>
                                                 <CVATTooltip title={<ReviewSummaryComponent jobInstance={job} />}>
@@ -201,7 +209,9 @@ function JobItem(props: Props): JSX.Element {
                                 <Row>
                                     <Col>
                                         <ProjectOutlined />
-                                        <Text>State: </Text>
+                                        <Text>
+                                            {`${t('translations:job.state')}: `}
+                                        </Text>
                                         <Text type='secondary' className='cvat-job-item-state'>
                                             {`${job.state.charAt(0).toUpperCase() + job.state.slice(1)}`}
                                         </Text>
@@ -210,7 +220,9 @@ function JobItem(props: Props): JSX.Element {
                                 <Row>
                                     <Col>
                                         <Icon component={DurationIcon} />
-                                        <Text>Duration: </Text>
+                                        <Text>
+                                            {`${t('translations:job.duration')}: `}
+                                        </Text>
                                         <Text type='secondary'>{`${moment.duration(now.diff(created)).humanize()}`}</Text>
                                     </Col>
                                 </Row>
@@ -221,7 +233,9 @@ function JobItem(props: Props): JSX.Element {
                                         <Row>
                                             <Col>
                                                 <Icon component={FramesIcon} />
-                                                <Text>Frame range: </Text>
+                                                <Text>
+                                                    {`${t('translations:job.frame_range')}: `}
+                                                </Text>
                                                 <Text type='secondary' className='cvat-job-item-frame-range'>
                                                     {`${job.startFrame}-${job.stopFrame}`}
                                                 </Text>
@@ -232,7 +246,9 @@ function JobItem(props: Props): JSX.Element {
                                 <Row>
                                     <Col>
                                         <BorderOutlined />
-                                        <Text>Frame count: </Text>
+                                        <Text>
+                                            {`${t('translations:job.frame_count')}: `}
+                                        </Text>
                                         <Text type='secondary' className='cvat-job-item-frames'>
                                             {`${job.frameCount} (${frameCountPercentRepresentation}%)`}
                                         </Text>

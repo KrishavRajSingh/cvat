@@ -43,6 +43,7 @@ import { shortcutsActions } from 'actions/shortcuts-actions';
 import { AboutState, CombinedState } from 'reducers';
 import { useIsMounted, usePlugins } from 'utils/hooks';
 import GlobalHotKeys, { KeyMap } from 'utils/mousetrap-react';
+import { useTranslation } from 'react-i18next';
 import SettingsModal from './settings-modal/settings-modal';
 import OrganizationsSearch from './organizations-search';
 
@@ -154,7 +155,7 @@ function HeaderComponent(props: Props): JSX.Element {
     const isMounted = useIsMounted();
     const [listFetching, setListFetching] = useState(false);
     const [organizationsList, setOrganizationList] = useState<Organization[] | null>(null);
-
+    const { i18n } = useTranslation();
     const searchCallback = useCallback((search?: string): Promise<Organization[]> => new Promise((resolve, reject) => {
         const promise = core.organizations.get(search ? { search } : {});
 
@@ -272,6 +273,28 @@ function HeaderComponent(props: Props): JSX.Element {
         });
     }, [about]);
 
+    const changeLanguage = useCallback((lng: string): void => {
+        i18n.changeLanguage(lng);
+    }, []);
+
+    const changeLanguageModal = useCallback((): void => {
+        Modal.info({
+            title: 'Language',
+            content: (
+                <div>
+                    <Button onClick={() => changeLanguage('en')}>English</Button>
+                    <Button onClick={() => changeLanguage('es')}>Spanish</Button>
+                </div>
+            ),
+            width: 800,
+            okButtonProps: {
+                style: {
+                    width: '100px',
+                },
+            },
+        });
+    }, []);
+
     const closeSettings = useCallback(() => {
         switchSettingsModalVisible(false);
     }, []);
@@ -387,6 +410,13 @@ function HeaderComponent(props: Props): JSX.Element {
         icon: <InfoCircleOutlined />,
         onClick: () => showAboutModal(),
         label: 'About',
+    }, 30]);
+
+    menuItems.push([{
+        key: 'change-language',
+        icon: <InfoCircleOutlined />,
+        onClick: () => changeLanguageModal(),
+        label: 'Change Language',
     }, 30]);
 
     if (renderChangePasswordItem) {
