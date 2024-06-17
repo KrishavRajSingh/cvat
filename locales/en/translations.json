@@ -1,24 +1,29 @@
 {
-    "task": {
-      "created_by": "Created by",
-      "created_on": "Created on",
-      "assigned_to": "Assigned to",
-      "task_description": "Task description",
-      "issue_tracker": "Issue Tracker",
-      "raw": "Raw",
-      "constructor": "Constructor",
-      "jobs": "Jobs",
-      "helol_world": "Hello world"
-    },
-    "job": {
-      "created_on": "Created on",
-      "last_updated": "Last updated",
-      "assignee": "Assignee",
-      "select_user": "Select a user",
-      "stage": "Stage",
-      "state": "State",
-      "duration": "Duration",
-      "frame_range": "Frame range",
-      "frame_count": "Frame count"
-    }
+  "project": {
+    "projectCreated": "Project #{{id}} created",
+    "byUser": "by {{username}}",
+    "onDate": "on {{date}}"
+  },
+  "task": {
+    "created_by": "Created by",
+    "created_on": "Created on",
+    "assigned_to": "Assigned to",
+    "task_description": "Task description",
+    "issue_tracker": "Issue Tracker",
+    "raw": "Raw",
+    "constructor": "Constructor",
+    "jobs": "Jobs",
+    "helol_world": "Hello world"
+  },
+  "job": {
+    "created_on": "Created on",
+    "last_updated": "Last updated",
+    "assignee": "Assignee",
+    "select_user": "Select a user",
+    "stage": "Stage",
+    "state": "State",
+    "duration": "Duration",
+    "frame_range": "Frame range",
+    "frame_count": "Frame count"
   }
+}

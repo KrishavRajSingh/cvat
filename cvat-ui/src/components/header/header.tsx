@@ -44,6 +44,7 @@ import { AboutState, CombinedState } from 'reducers';
 import { useIsMounted, usePlugins } from 'utils/hooks';
 import GlobalHotKeys, { KeyMap } from 'utils/mousetrap-react';
 import { useTranslation } from 'react-i18next';
+import { languageMetadata } from '../../i18n';
 import SettingsModal from './settings-modal/settings-modal';
 import OrganizationsSearch from './organizations-search';
 
@@ -282,8 +283,9 @@ function HeaderComponent(props: Props): JSX.Element {
             title: 'Language',
             content: (
                 <div>
-                    <Button onClick={() => changeLanguage('en')}>English</Button>
-                    <Button onClick={() => changeLanguage('es')}>Spanish</Button>
+                    {Object.entries(languageMetadata).map(([lng, name]) => (
+                        <Button key={lng} onClick={() => changeLanguage(lng)}>{name}</Button>
+                    ))}
                 </div>
             ),
             width: 800,

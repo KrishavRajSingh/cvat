@@ -14,6 +14,7 @@ import LabelsEditor from 'components/labels-editor/labels-editor';
 import BugTrackerEditor from 'components/task-page/bug-tracker-editor';
 import UserSelector from 'components/task-page/user-selector';
 import MdGuideControl from 'components/md-guide/md-guide-control';
+import { useTranslation } from 'react-i18next';
 
 const core = getCore();
 
@@ -25,7 +26,7 @@ interface DetailsComponentProps {
 export default function DetailsComponent(props: DetailsComponentProps): JSX.Element {
     const { project, onUpdateProject } = props;
     const [projectName, setProjectName] = useState(project.name);
-
+    const { t } = useTranslation();
     return (
         <div data-cvat-project-id={project.id} className='cvat-project-details'>
             <Row>
@@ -48,9 +49,9 @@ export default function DetailsComponent(props: DetailsComponentProps): JSX.Elem
             <Row justify='space-between' className='cvat-project-description'>
                 <Col>
                     <Text type='secondary'>
-                        {`Project #${project.id} created`}
-                        {project.owner ? ` by ${project.owner.username}` : null}
-                        {` on ${moment(project.createdDate).format('MMMM Do YYYY')}`}
+                        {`${t('translations:project.projectCreated', { id: project.id })}`}
+                        {project.owner ? ` ${t('translations:project.byUser', { username: project.owner.username })}` : null}
+                        {` ${t('translations:project.onDate', { date: moment(project.createdDate).format('MMMM Do YYYY') })}`}
                     </Text>
                     <MdGuideControl instanceType='project' id={project.id} />
                     <BugTrackerEditor

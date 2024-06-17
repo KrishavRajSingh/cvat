@@ -1,24 +1,29 @@
 {
-    "task": {
-      "created_by": "Creado por",
-      "created_on": "Creado el",
-      "assigned_to": "Asignado a",
-      "task_description": "Descripción de la tarea",
-      "issue_tracker": "Rastreador de problemas",
-      "raw": "Bruto",
-      "constructor": "Constructor",
-      "jobs": "Trabajos",
-      "helol_world": "Hola mundo"
-    },
-    "job": {
-      "created_on": "Creado el",
-      "last_updated": "Última actualización",
-      "assignee": "Asignado a",
-      "select_user": "Seleccionar un usuario",
-      "stage": "Etapa",
-      "state": "Estado",
-      "duration": "Duración: un día",
-      "frame_range": "Rango de cuadros",
-      "frame_count": "Cantidad de cuadros"
-    }
+  "project": {
+    "projectCreated": "Proyecto #{{id}} creado",
+    "byUser": "por {{username}}",
+    "onDate": "el {{date}}"
+  },
+  "task": {
+    "created_by": "Creado por",
+    "created_on": "Creado el",
+    "assigned_to": "Asignado a",
+    "task_description": "Descripción de la tarea",
+    "issue_tracker": "Rastreador de problemas",
+    "raw": "Bruto",
+    "constructor": "Constructor",
+    "jobs": "Trabajos",
+    "helol_world": "Hola mundo"
+  },
+  "job": {
+    "created_on": "Creado el",
+    "last_updated": "Última actualización",
+    "assignee": "Asignado a",
+    "select_user": "Seleccionar un usuario",
+    "stage": "Etapa",
+    "state": "Estado",
+    "duration": "Duración: un día",
+    "frame_range": "Rango de cuadros",
+    "frame_count": "Cantidad de cuadros"
   }
+}

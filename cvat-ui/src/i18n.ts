@@ -4,6 +4,13 @@ import { initReactI18next } from 'react-i18next';
 import HttpApi from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
+export const languageMetadata = {
+    en: 'English',
+    es: 'Spanish',
+    hi: 'Hindi',
+    // Add more languages here
+};
+
 i18n
     .use(HttpApi)
     .use(LanguageDetector)
@@ -11,7 +18,7 @@ i18n
     .init({
         fallbackLng: 'en',
         debug: true,
-        supportedLngs: ['en', 'es'],
+        supportedLngs: Object.keys(languageMetadata),
         ns: ['translations'],
         interpolation: {
             escapeValue: false, // React already escapes by default

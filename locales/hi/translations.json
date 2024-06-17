@@ -1,0 +1,29 @@
+{
+    "project": {
+        "projectCreated": "प्रोजेक्ट #{{id}} ",
+        "byUser": "{{username}} द्वारा",
+        "onDate": "{{date}} को बनाया गया"
+    },
+    "task": {
+        "created_by": "द्वारा बनाया गया",
+        "created_on": "पर बनाया गया",
+        "assigned_to": "को सौंपा गया",
+        "task_description": "कार्य विवरण",
+        "issue_tracker": "मुद्दा ट्रैकर",
+        "raw": "कच्चा",
+        "constructor": "निर्माता",
+        "jobs": "नौकरियां",
+        "helol_world": "नमस्ते दुनिया"
+    },
+    "job": {
+        "created_on": "पर बनाया गया",
+        "last_updated": "अंतिम अपडेट",
+        "assignee": "सौंपने वाला",
+        "select_user": "एक उपयोगकर्ता चुनें",
+        "stage": "मंच",
+        "state": "स्थिति",
+        "duration": "अवधि",
+        "frame_range": "फ्रेम सीमा",
+        "frame_count": "फ्रेम गिनती"
+    }
+}
