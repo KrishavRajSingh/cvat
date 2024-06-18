@@ -70,6 +70,13 @@ languageName ="English"
 # Weight used for sorting.
 weight = 1
 
+[languages.hi]
+title = "सीवीएटी"
+description = ""
+languageName = "हिन्दी"
+weight = 2
+contentDir = "content/hi"
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
